@@ -1,0 +1,14 @@
+Crear una aplicación WEB con el modelo cliente-servidor, que realice lo siguiente:
+
+Un formulario que solicite:
+- Usuario
+- Clave
+- Fecha Nacimiento 
+- Genero (F - M - NB)
+
+Aplicar las buenas practicas vistas en clase.
+
+Parametros de entrega
+- Individual
+- Crear Repositorio en GitHub
+- Fecha máxima de entrega: 22-feb-24.
