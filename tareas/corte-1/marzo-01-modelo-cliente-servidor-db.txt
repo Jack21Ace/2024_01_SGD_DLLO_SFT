@@ -1,0 +1,9 @@
+Fecha de entrega 07-03-2024
+Modelo de calificación: trabajo:30%, sustentación: 65%.
+Fecha de sustentación: 15-03-2024
+
+1- Buscar una empresa y crear una aplicación web que aplique los conocimeintos cliente-servidor.
+
+Re visar los 9 problemas vistos en clase
+
+Se deben crear almenos 3 formularios y se debe incluir un formulario de registro de usuarios
