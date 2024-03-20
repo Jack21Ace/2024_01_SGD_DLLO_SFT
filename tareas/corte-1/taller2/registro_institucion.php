@@ -11,7 +11,7 @@ if(!isset($_SESSION['user_data'])) {
 <hr>
 <form action="registro_proyecto.php" method="post">
     Nombre: <input type="text" name="name"><br><br>
-    RUT: <input type="text" name="rut"><br><br>
+    Nit: <input type="text" name="nit"><br><br>
     Rep: <input type="text" name="rep"><br><br>
     Razon Social <input type="text" name="tradename"><br><br>
     <hr>

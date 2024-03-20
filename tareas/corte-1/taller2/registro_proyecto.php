@@ -10,8 +10,8 @@ if(!isset($_SESSION['user_data'])) {
 <h1>Registro de Proyectos</h1>
 <hr>
 <form action="registro_requerimientos.php" method="post">
-    name: <input type="text" name="name"><br><br>
-    Codigo: <input type="text" name="code"><br><br>
+    Nombre: <input type="text" name="name"><br><br>
+    Codigo: <input type="text" name="code_id"><br><br>
     Estado: <input type="text" name="status"><br><br>
     <hr>
     <input type="submit" value="Registrar Proyecto">

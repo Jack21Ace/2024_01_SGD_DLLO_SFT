@@ -17,5 +17,5 @@ if(!isset($_SESSION['user_data'])) {
     Tipo VM: <input type="text" name="typevm"><br><br>
     
     <hr>
-    <input type="submit" value="Registrar Institución">
+    <input type="submit" value="Registrar Requerimiento">
 </form>

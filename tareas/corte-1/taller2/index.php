@@ -7,7 +7,7 @@
     Apellido: <input type="text" name="surname"><br><br>
     Documento <input type="text" name="dni"><br><br>
     Usuario <input type="text" name="email"><br><br>
-    Password <input type="password" name="password"><br><br>
+    Password <input type="password" name="password_hash"><br><br>
     <hr>
     <input type="submit" value="Registrar">
 </form>
