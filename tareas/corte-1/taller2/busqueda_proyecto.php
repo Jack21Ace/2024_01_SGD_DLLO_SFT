@@ -43,18 +43,25 @@
         <input type="submit" value="Buscar">
     </form>
     <?php 
+
     if(isset($_GET["nombreProyecto"])) {
-        $nombreProyecto = $_GET["nombreProyecto"];
+        // filter_var en PHP es una función versátil utilizada para validar y sanitizar variables
+        // FILTER_SANITIZE_STRING es un filtro de validación de entrada integrado en PHP. Se utiliza para eliminar o codificar caracteres especiales de una cadena de texto.
+        $nombreProyecto = filter_var($_GET["nombreProyecto"], FILTER_SANITIZE_STRING);
         echo "Búsqueda por: $nombreProyecto";
 
         // Conexión a la base de datos PostgreSQL
         $dbuser = "jack";
         $dbpass = "asd.1234";
         $dbname = "c-bios";
+
+        // PDO: Esta clase proporciona una interfaz segura para la conexión y ejecución de consultas en bases de datos.
         $conn = new PDO("pgsql:host=localhost;port=5432;dbname=$dbname", $dbuser, $dbpass);
 
         // Consulta SQL para buscar proyectos por nombre
+        // prepare() para preparar la consulta SQL antes de ejecutarla. Esto permite separar la lógica de la consulta de los valores que se le pasan.
         $consultaSQL = $conn->prepare("SELECT name, code_id, status FROM projects WHERE name LIKE :nombreProyecto");
+        // bindValue() para vincular los valores de las variables a los parámetros de la consulta. Esto evita que los valores se interpreten como código SQL.
         $consultaSQL->bindValue(':nombreProyecto', '%' . $nombreProyecto . '%');
         $consultaSQL->execute();
     ?>
@@ -68,9 +75,10 @@
         while ($row = $consultaSQL->fetch(PDO::FETCH_ASSOC)) {
     ?>
         <tr>
-            <td><?php echo $row["name"] ?></td>
-            <td><?php echo $row["code_id"] ?></td>
-            <td><?php echo $row["status"] ?></td>
+<!-- htmlspecialchars(): Convierte caracteres especiales como '<', '>' y '&' en entidades HTML para evitar que se interpreten como código JavaScript. -->
+            <td><?php echo htmlspecialchars($row["name"]) ?></td>
+            <td><?php echo htmlspecialchars($row["code_id"]) ?></td>
+            <td><?php echo htmlspecialchars($row["status"]) ?></td>
         </tr>
     <?php
         }

@@ -6,6 +6,8 @@
     //     # p 8 - Para almacenar accesos o datos sencibles de la aplicación se debe usar un secret storage }
     //     #       Ejemplo K8s o Simple storage
     //     # p 9 - Las variables que estan en memoria se deben limpiar apara evitar que caigan en un memory domp
+    //
+    //     # P 11 - incluir listas balncas o negras tanto en el cliente como en el servidor para inflitar instrucciones maliciosas
 
     if(isset($_POST["nombre"]) && isset($_POST["documento"]) && isset($_POST["usuario"]) && isset($_POST["password"]))
 {

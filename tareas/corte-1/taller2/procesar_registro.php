@@ -45,11 +45,11 @@ try {
 
     // Consulta de inserción para el proyecto
     $query_proyecto = "INSERT INTO projects (name, code_id, status) 
-                       VALUES (:name, :code_id, :status)";
+                        VALUES (:name, :code_id, :status)";
     $q_proyecto = $conn->prepare($query_proyecto);
-    $q_proyecto->bindParam(':name', $_POST['name']);
-    $q_proyecto->bindParam(':code_id', $_POST['code_id']);
-    $q_proyecto->bindParam(':status', $_POST['status']);
+    $q_proyecto->bindParam(':name', $name, PDO::PARAM_STR);
+    $q_proyecto->bindParam(':code_id', $code_id, PDO::PARAM_STR);
+    $q_proyecto->bindParam(':status', $status, PDO::PARAM_STR);
     $q_proyecto->execute();
 
     // Obtener el ID del proyecto recién insertado

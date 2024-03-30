@@ -7,3 +7,6 @@ Fecha de sustentación: 15-03-2024
 Re visar los 9 problemas vistos en clase
 
 Se deben crear almenos 3 formularios y se debe incluir un formulario de registro de usuarios
+
+
+where = ''
