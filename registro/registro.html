@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro JS</title>
+</head>
+<body>
+    <h1>Registrese aquí</h1>
+    <img src="img.png" width="200" height="200">
+
+    <form action="">
+        Nombre <input type="text" name="name" id="name" onkeypress="onNombreKeyPress()"> <br>
+        Fecha Naciemiento <input type="date" name="birthday" id="birthday"> <br>
+        Genero <input type="radio" name="gender" value="m"> Masculino <input type="radio" name="gender" value="f" id="gender"> Femenino <br>
+        Lugar de nacimiento <select name="wUb" id="wUb">
+            <option value="man">Manizales</option>
+            <option value="per">Pereira</option>
+            <option value="Chi">Chinchina</option>
+            </select> <br>
+        password <input type="password" name="password" id="password"> <br>
+        password confirmation <input type="password" name="passwordConfirmation" id="passwordConfirmation"> <br>
+        color que mas le gusta <input type="color" name="colorQueMAsLeGusta" id="colorQueMAsLeGusta"> <br>
+        <input type="checkbox" name="aceptaTerminosYCondiciones" id="aceptaTerminosYCondiciones"> Acepto Terminos y Condiciones <br>
+    </form>
+    <button onclick="registrarse()">Registrarse</button>
+    <script type="text/JavaScript">
+        function registrarse(){
+            let elementName = document.getElementById('name');
+            let elementBirthDay = document.getElementById('birthday');
+            let elementGender = document.getElementById('gender');
+            let elementwUb = document.getElementById('wUb');
+            let elementPass = document.getElementById('password');
+            let elementPassc = document.getElementById('passwordConfirmation');
+            let elementColor = document.getElementById('colorQueMAsLeGusta');
+            let elementAcept = document.getElementById('aceptaTerminosYCondiciones');
+            if (elementName.value != "" OR elementBirthDay.value != "" OR elementGender.value != "" OR elementwUb.value != "" OR elementPass.value != "" OR elementPassc.value != "" OR elementColor.value != "" OR elementAcept.value != ""){
+                <!-- agregar validaciones -->
+            } else {
+                if (elementName.value == "") {
+                    elementName.style.background = 'red';
+                    elementName.focus();
+                    alert("Ingrese un nombre");
+                }
+                else if ()
+            }
+        }
+
+        function onNombreKeyPress(){
+
+        }
+    </script>
+</body>
+</html>

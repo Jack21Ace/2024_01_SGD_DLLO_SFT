@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro JS</title>
+    <style>
+        .error {
+            border: 1px solid red;
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+<body>
+    <h1>Regístrese aquí</h1>
+    <img src="img.png" width="200" height="200" id="imagen">
+
+    <form action="" id="formulario">
+        Nombre <input type="text" name="name" id="name" onkeypress="onNombreKeyPress(event)"> <br>
+        Apellido <input type="text" name="lastname" id="lastname"> <br>
+        Fecha Nacimiento <input type="date" name="birthday" id="birthday" onchange="calcularEdad()"><span id="edad"></span><br>
+        Género <input type="radio" name="gender" value="m"> Masculino <input type="radio" name="gender" value="f" id="gender"> Femenino <br>
+        Lugar de nacimiento <select name="wUb" id="wUb" onchange="mostrarLugarNacimiento()">
+            <option value="">Seleccione una opción</option>
+            <option value="man">Manizales</option>
+            <option value="per">Pereira</option>
+            <option value="chi">Chinchiná</option>
+        </select> <span id="lugarNacimiento"></span><br>
+        Correo electrónico <input type="email" name="email" id="email"> <br>
+        Contraseña <input type="password" name="password" id="password"> <br>
+        Confirmar contraseña <input type="password" name="passwordConfirmation" id="passwordConfirmation"> <br>
+        Color que más le gusta <input type="color" name="colorQueMasLeGusta" id="colorQueMasLeGusta"> <br>
+        <input type="checkbox" name="aceptaTerminosYCondiciones" id="aceptaTerminosYCondiciones"> Acepto Términos y Condiciones <br>
+    </form>
+    <button onclick="registrarse()">Registrarse</button>
+
+    <script type="text/javascript">
+        function registrarse() {
+            let errores = [];
+            let elementName = document.getElementById('name');
+            let elementLastname = document.getElementById('lastname');
+            let elementBirthday = document.getElementById('birthday');
+            let elementGender = document.getElementsByName('gender');
+            let elementwUb = document.getElementById('wUb');
+            let elementEmail = document.getElementById('email');
+            let elementPass = document.getElementById('password');
+            let elementPassc = document.getElementById('passwordConfirmation');
+            let elementColor = document.getElementById('colorQueMasLeGusta');
+            let elementAcept = document.getElementById('aceptaTerminosYCondiciones');
+
+            // Validar nombre
+            if (elementName.value.trim() === "") {
+                errores.push("Ingrese un nombre válido");
+                elementName.classList.add("error");
+            } else {
+                elementName.classList.remove("error");
+            }
+
+            // Validar apellido
+            if (elementLastname.value.trim() === "") {
+                errores.push("Ingrese un apellido válido");
+                elementLastname.classList.add("error");
+            } else {
+                elementLastname.classList.remove("error");
+            }
+
+            // Validar fecha de nacimiento
+            if (elementBirthday.value === "") {
+                errores.push("Ingrese una fecha de nacimiento válida");
+                elementBirthday.classList.add("error");
+            } else {
+                elementBirthday.classList.remove("error");
+            }
+
+            // Validar género
+            let genderChecked = false;
+            let genero = "";
+            for (let i = 0; i < elementGender.length; i++) {
+                if (elementGender[i].checked) {
+                    genderChecked = true;
+                    genero = elementGender[i].value === "m" ? "Masculino" : "Femenino";
+                    break;
+                }
+            }
+            if (!genderChecked) {
+                errores.push("Seleccione un género");
+            }
+
+            // Validar correo electrónico
+            let emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(elementEmail.value)) {
+                errores.push("Ingrese un correo electrónico válido");
+                elementEmail.classList.add("error");
+            } else {
+                elementEmail.classList.remove("error");
+            }
+
+            // Validar contraseña
+            if (elementPass.value.trim() === "") {
+                errores.push("Ingrese una contraseña válida");
+                elementPass.classList.add("error");
+            } else {
+                elementPass.classList.remove("error");
+            }
+
+            // Validar confirmación de contraseña
+            if (elementPassc.value.trim() === "") {
+                errores.push("Confirme la contraseña");
+                elementPassc.classList.add("error");
+            } else if (elementPass.value !== elementPassc.value) {
+                errores.push("Las contraseñas no coinciden");
+                elementPassc.classList.add("error");
+            } else {
+                elementPassc.classList.remove("error");
+            }
+
+            // Validar aceptación de términos y condiciones
+            if (!elementAcept.checked) {
+                errores.push("Debe aceptar los términos y condiciones");
+            }
+
+            // Mostrar errores
+            if (errores.length > 0) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    html: errores.join('<br>'),
+                });
+            } else {
+                // Todos los campos son válidos, cambiar imagen
+                let imagen = document.getElementById("imagen");
+                imagen.src = "hola.webp";
+                imagen.alt = "Bienvenido";
+
+                // Obtener datos del usuario
+                let nombre = `${elementName.value} ${elementLastname.value}`;
+                let edad = document.getElementById("edad").innerHTML;
+                let correoElectronico = elementEmail.value;
+
+                Swal.fire({
+                    icon: 'success',
+                    title: '¡Bienvenido!',
+                    html: `Registro completado con éxito.<br><br>
+                           Nombre: ${nombre}<br>
+                           Género: ${genero}<br>
+                           ${edad}<br>
+                           Correo electrónico: ${correoElectronico}`,
+                });
+            }
+        }
+
+        function onNombreKeyPress(event) {
+            // Permitir solo letras y espacios
+            let charCode = event.which ? event.which : event.keyCode;
+            if (charCode !== 32 && (charCode < 65 || charCode > 90) && (charCode < 97 || charCode > 122)) {
+                event.preventDefault();
+            }
+        }
+
+        function mostrarLugarNacimiento() {
+            let elementwUb = document.getElementById('wUb');
+            let lugarNacimiento = document.getElementById('lugarNacimiento');
+            lugarNacimiento.innerHTML = elementwUb.options[elementwUb.selectedIndex].text;
+        }
+
+        function calcularEdad() {
+            let elementBirthday = document.getElementById('birthday');
+            let edad = document.getElementById('edad');
+            if (elementBirthday.value) {
+                let fechaNacimiento = new Date(elementBirthday.value);
+                let hoy = new Date();
+                let diffMilisegundos = Math.abs(hoy.getTime() - fechaNacimiento.getTime());
+                let diffAnos = Math.floor(diffMilisegundos / (1000 * 60 * 60 * 24 * 365.25));
+                edad.innerHTML = `Edad: ${diffAnos} años`;
+            } else {
+                edad.innerHTML = '';
+            }
+        }
+    </script>
+</body>
+</html>
